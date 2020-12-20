@@ -1,0 +1,37 @@
+#dropdown {
+
+    #header {
+        width: 200px;
+        background: #CECECE;
+        padding: 6px 10px;
+        color: black;
+        transition: 0.1s;
+    }
+    
+    #header:hover {
+        background: white;
+        cursor: pointer;
+    }
+
+    #header:focus {
+        background: white;
+    }
+
+    #options {
+        width: 300px;
+        background: white;
+        position: absolute;
+        transition: 0.2s;
+
+        #option {
+            padding: 6px 10px;
+            color: #505050;
+        }
+
+        #option:hover {
+            background: #CECECE;
+            color: black;
+            cursor: pointer;
+        }
+    }
+}
