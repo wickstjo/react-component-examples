@@ -1,6 +1,6 @@
-import React, { useContext, useState, useRef, useEffect } from 'react';
+import React, { useContext, useReducer, useEffect, useRef } from 'react';
 import { Context } from '../assets/context';
-
+import { reducer, values } from '../states/dropdown';
 import '../interface/css/dropdown.scss';
 
 export default({ header, children }) => {
@@ -9,70 +9,48 @@ export default({ header, children }) => {
     const { state } = useContext(Context);
 
     // LOCAL STATE
-    const [style, set_style] = useState({
-        opacity: 1,
-        visibility: 'visible'
-    })
+    const [local, set_local] = useReducer(reducer, values);
 
-    // HEADER SELECTOR
-    const position = useRef(null);
+    // SELECTOR REFERENCES
+    const header_selector = useRef(null);
+    const options_selector = useRef(null);
 
-    // ADD/REMOVE EVENT LISTENER
+    // ADJUST FOR LEFT OR RIGHT ALIGNMENT FOR OPTIONS
     useEffect(() => {
-        window.addEventListener('click', test)
-        return () => {
-            window.removeEventListener('click', test)
-        }
 
-    // eslint-disable-next-line
-    }, [style])
+        // CURRENT MEASUREMENTS
+        const start_position = options_selector.current.offsetParent.offsetLeft
+        const options_width = options_selector.current.clientWidth
+        const header_width = header_selector.current.clientWidth
+        const offset = 5
 
-    // RECALIBRATE COORDINATES IF WINDOW IS RESIZED
-    useEffect(() => {
-        if (style.opacity === 1) {
-            set_style({
-                ...style,
-                top: position.current.offsetTop + position.current.offsetHeight,
-                left: position.current.offsetLeft
-            })
-        }
-    
+        // CUMULATIVE WIDTH
+        const cumulative_width = start_position + options_width + offset
+
+        // RIGHT ALIGN IF THERE ISNT ENOUGH SPACE ON THE RIGHT
+        set_local({
+            type: 'style',
+            payload: {
+                left: cumulative_width > state.window.width ? Math.abs(header_width - options_width) * -1 : 0                                
+            }
+        })
+
     // eslint-disable-next-line
     }, [state.window])
 
-    // SET DEFAULT POSITION WHEN HEADER REFERENCE RENDERS
+    // CLOSE OPTIONS WHEN SOMETHING ELSE IS CLICKED
     useEffect(() => {
-        set_style({
-            ...style,
-            top: position.current.offsetTop + position.current.offsetHeight,
-            left: position.current.offsetLeft
-        })
+        if (local.visible && state.click.target.parentElement !== options_selector.current && state.click.target !== header_selector.current) {
+            set_local({ type: 'toggle' })
+        }
 
     // eslint-disable-next-line
-    }, [position])
-
-    function test(event) {
-        if (style.opacity && event.target.id !== 'option') {
-            toggle()
-        }
-    }
-
-    // TOGGLE VISIBILITY
-    function toggle() {
-        set_style({
-            ...style,
-            opacity: style.opacity ? 0 : 1,
-            transform: style.opacity ? 'translate(0px, 0px)' : 'translate(0px, 5px)',
-            top: position.current.offsetTop + position.current.offsetHeight,
-            left: position.current.offsetLeft,
-            visibility: style.opacity ? 'hidden' : 'visible'
-        })
-    }
+    }, [state.click])
     
     return (
         <div id={ 'dropdown' }>
-            <div id={ 'header' } onClick={ toggle } ref={ position }>{ header }</div>
-            <div id={ 'options' } style={ style }>{ children }</div>
+            <div id={ 'header' } className={ local.header_class } onClick={() => { set_local({ type: 'toggle' }) }} ref={ header_selector }>{ header }</div>
+            <div id={ 'options' } className={ local.options_class } style={ local.options_style } ref={ options_selector }>{ children }</div>
         </div>
     )
 }

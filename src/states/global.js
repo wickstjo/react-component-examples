@@ -1,9 +1,9 @@
-// DEFUALT STATE
+// DEFALT STATE
 const values = {
    data: {},
    window: {
-      height: 0,
-      width: 0
+      height: window.innerHeight,
+      width: window.innerWidth
    }
 }
 
@@ -11,21 +11,27 @@ const values = {
 function reducer(state, { type, payload }) {
    switch (type) {
 
-      // INITIALIZE
+      // INITIALIZE DATA
       case 'init': { return {
          ...state,
          data: payload
       }}
 
-      // WINDOW SIZE
+      // WINDOW RESIZE EVENT
       case 'window': { return {
          ...state,
          window: payload
       }}
+
+      // MOUSE CLICK EVENT
+      case 'click': { return {
+         ...state,
+         click: payload
+      }}
       
       // FALLBACK
       default: {
-         console.log('CONTEXT REDUCER TYPE NOT FOUND');
+         console.log('GLOBAL REDUCER TYPE NOT FOUND');
          return state;
       }
    }

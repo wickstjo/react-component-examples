@@ -25,6 +25,14 @@ export default () => {
          })
       })
 
+      // MOUSE CLICK EVENT LISTENER
+      window.addEventListener('click', event => {
+         dispatch({
+            type: 'click',
+            payload: event
+         })
+      })
+
    // eslint-disable-next-line
    }, [])
 

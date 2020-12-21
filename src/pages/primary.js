@@ -1,22 +1,8 @@
 import React from 'react';
-import Dropdown from '../components/dropdown';
+import { Link } from 'react-router-dom';
 
 export default () => { return (
     <div id={ 'inner' }>
-        <Dropdown header={ 'This is a Trigger' }>
-            <div id={ 'option' } onClick={() => { console.log('foo') }}>First</div>
-            <div id={ 'option' } onClick={() => { console.log('bar') }}>Second</div>
-            <div id={ 'option' } onClick={() => { console.log('biz') }}>Third</div>
-        </Dropdown>
-        <br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br />
-        <Dropdown header={ 'Another Trigger' }>
-            <div id={ 'option' } onClick={() => { console.log('foo') }}>First</div>
-            <div id={ 'option' } onClick={() => { console.log('bar') }}>Second</div>
-            <div id={ 'option' } onClick={() => { console.log('biz') }}>Third</div>
-        </Dropdown>
+        <Link to={ '/dropdown' }>Dropdown Menu</Link>
     </div>
 )}
