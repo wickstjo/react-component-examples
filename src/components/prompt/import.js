@@ -1,10 +1,8 @@
 import React, { Fragment } from 'react';
 
-export default ({ header }) => { return (
+export default () => { return (
     <Fragment>
-        <div id={ 'header' }>{ header }</div>
-        <div id={ 'container' }>
-            Foo
-        </div>
+        <div id={ 'header' }>Cool Prompt Window</div>
+        <div id={ 'container' }>Foobar</div>
     </Fragment>
 )}

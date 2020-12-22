@@ -1,53 +1,52 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Context } from "../assets/context";
-import { sleep } from "../funcs/misc";
 import '../interface/css/prompt.scss';
 
 import Import from './prompt/import';
 
-// PROMPT CONTAINER
-function Prompt() {
+export default ({ set_wrapper }) => {
    
     // GLOBAL STATE
     const { state, dispatch } = useContext(Context);
 
-    // TOGGLE VISIBILITY BASED ON STATE
+    // LOCAL STYLE STATE -- DEFAULT TO INACTIVE
+    const [local, set_local] = useState('inactive');
+
+    // TOGGLE VISIBILITY
     useEffect(() => {
-        if (state.prompt.visible) {
-            document.getElementById('prompt').style.display = 'flex';
-            sleep(100).then(() => {
-                document.getElementById('wrapper').style.filter = 'blur(6px)';
-                document.getElementById('prompt').style.opacity = 1;
-            })
-        } else {
-            document.getElementById('prompt').style.opacity = 0;
-            document.getElementById('wrapper').style.filter = 'none';
-            sleep(100).then(() => {
-                document.getElementById('prompt').style.display = 'none';
-            })
+
+        // WRAPPER & PROMPT STATUSES
+        const wrapper_status = state.prompt.visible ? 'inactive' : 'active'
+        const prompt_status = state.prompt.visible ? 'active' : 'inactive'
+
+        // CHANGE SELECTOR CLASSES
+        set_local(prompt_status)
+        set_wrapper(wrapper_status)
+
+    // eslint-disable-next-line
+    }, [state.prompt.visible])
+
+    // CLOSE PROMPT WHEN ESC IS PRESSED
+    useEffect(() => {
+        if (state.key_event !== undefined && state.prompt.visible && state.key_event.key === 'Escape') {
+            dispatch({ type: 'hide-prompt' })
         }
-    }, [state.prompt.visible]);
+
+    // eslint-disable-next-line
+    }, [state.key_event])
 
     return (
-        <div id={ 'prompt' }>
+        <div id={ 'prompt' } className={ local }>
             <div id={ 'inner' }>
-                <Content
-                    type={ state.prompt.type }
-                    header={ state.prompt.header }
-                    data={ state.prompt.data }
-                    other={ state.prompt.other }
-                />
-                <span
-                    id="close"
-                    onClick={() => { dispatch({ type: 'hide-prompt' }) }}
-                />
+                <Content  type={ state.prompt.type } />
+                <span id="close" onClick={() => { dispatch({ type: 'hide-prompt' }) }} />
             </div>
         </div>
     )
 }
 
 // PROMPT CONTENT
-function Content({ type, header }) {
+function Content({ type }) {
     switch(type) {
 
         // LOADING
@@ -57,9 +56,7 @@ function Content({ type, header }) {
 
         // IMPORT PROMPT
         case 'import': {
-            return <Import
-                header={ header }
-            />
+            return <Import />
         }
 
         // FALLBACK
@@ -68,5 +65,3 @@ function Content({ type, header }) {
         }
     }
 }
-
-export default Prompt;

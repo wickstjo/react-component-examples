@@ -14,15 +14,11 @@ export default() => {
         <div id="menu">
             <div>
                 <MenuItem
-                    header={ 'Primary' }
+                    header={ 'Components' }
                     link={ '/' }
                 />
-                <MenuItem
-                    header={ 'Secondary' }
-                    link={ '/secondary' }
-                />
                 <MenuTrigger
-                    header={ 'Trigger' }
+                    header={ 'Effect Trigger' }
                     func={ foo }
                 />
             </div>

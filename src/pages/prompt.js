@@ -6,16 +6,26 @@ export default () => {
     // GLOBAL STATE
     const { dispatch } = useContext(Context);
 
-    function trigger() {
+    // LOADING SCREEN TRIGGER
+    function loading_trigger() {
         dispatch({
             type: 'show-prompt',
             payload: 'loading'
         })
     }
+
+    // IMPORT SCREEN TRIGGER
+    function import_trigger() {
+        dispatch({
+            type: 'show-prompt',
+            payload: 'import'
+        })
+    }
     
     return (
         <div id={ 'inner' }>
-            <div id={ 'project' } onClick={ trigger }>OPEN PROMPT</div>
+            <div id={ 'button' } onClick={ loading_trigger }>TRIGGER LOADING PROMPT</div>
+            <div id={ 'button' } onClick={ import_trigger }>TRIGGER IMPORT PROMPT</div>
         </div>
     )
 }

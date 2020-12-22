@@ -1,12 +1,15 @@
 // DEFALT STATE
 const values = {
-    data: {},
 
     // WINDOW SIZE
     window: {
         height: window.innerHeight,
         width: window.innerWidth
     },
+
+    // MOUSE & KEY EVENTS
+    click_event: null,
+    key_event: null,
 
     // PROMPT WINDOW
     prompt: {
@@ -18,13 +21,7 @@ const values = {
 // STATE REDUCER
 function reducer(state, { type, payload }) {
     switch (type) {
-
-        // INITIALIZE DATA
-        case 'init': { return {
-            ...state,
-            data: payload
-        }}
-
+        
         // WINDOW RESIZE EVENT
         case 'window': { return {
             ...state,
@@ -32,9 +29,15 @@ function reducer(state, { type, payload }) {
         }}
 
         // MOUSE CLICK EVENT
-        case 'click': { return {
+        case 'click-event': { return {
             ...state,
-            click: payload
+            click_event: payload
+        }}
+
+        // KEYBOARD EVENT
+        case 'key-event': { return {
+            ...state,
+            key_event: payload
         }}
 
         // SHOW SPECIFIC PROMPT

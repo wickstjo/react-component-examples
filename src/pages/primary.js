@@ -1,9 +1,12 @@
 import React from 'react';
-import Project from '../components/project';
+import List from '../components/list';
 
 export default () => { return (
-    <div id={ 'inner' }>
-        <Project header={ 'Dropdown Menu' }  to={ '/dropdown' } />
-        <Project header={ 'Prompt Window' }  to={ '/prompt' } />
-    </div>
+    <List
+        header={ 'created components' }
+        data={[
+            ['Dropdown Menu', '/dropdown'],
+            ['Prompt Window', '/prompt']
+        ]}
+    />
 )}

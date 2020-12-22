@@ -28,7 +28,15 @@ export default () => {
       // MOUSE CLICK EVENT LISTENER
       window.addEventListener('click', event => {
          dispatch({
-            type: 'click',
+            type: 'click-event',
+            payload: event
+         })
+      })
+
+      // KEY EVENT LISTENER
+      window.addEventListener('keydown', event => {
+         dispatch({
+            type: 'key-event',
             payload: event
          })
       })

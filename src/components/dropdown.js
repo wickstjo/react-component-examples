@@ -40,12 +40,12 @@ export default({ header, children }) => {
 
     // CLOSE OPTIONS WHEN SOMETHING ELSE IS CLICKED
     useEffect(() => {
-        if (local.visible && state.click.target.parentElement !== options_selector.current && state.click.target !== header_selector.current) {
+        if (local.visible && state.click_event.target.parentElement !== options_selector.current && state.click_event.target !== header_selector.current) {
             set_local({ type: 'toggle' })
         }
 
     // eslint-disable-next-line
-    }, [state.click])
+    }, [state.click_event])
     
     return (
         <div id={ 'dropdown' }>
