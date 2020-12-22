@@ -4,5 +4,21 @@
 
    #inner {
       padding: 40px;
+
+      #project {
+         display: inline-block;
+         background: #bebebe;
+         padding: 8px 10px;
+         margin-bottom: 5px;
+         transition: 0.2s;
+         cursor: pointer;
+         min-width: 300px;
+         color: black;
+      }
+
+      #project:hover {
+         background: #F1F1F1;
+         padding-left: 16px;
+      }
    }
 }

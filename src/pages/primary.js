@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Project from '../components/project';
 
 export default () => { return (
     <div id={ 'inner' }>
-        <Link to={ '/dropdown' }>Dropdown Menu</Link>
+        <Project header={ 'Dropdown Menu' }  to={ '/dropdown' } />
+        <Project header={ 'Prompt Window' }  to={ '/prompt' } />
     </div>
 )}
