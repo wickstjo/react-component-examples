@@ -2,47 +2,47 @@ import { useContext, useEffect } from 'react';
 import { Context } from './context';
 
 export default () => {
-   
-   // GLOBAL STATE
-   const { dispatch } = useContext(Context);
 
-   // LOAD ONCE
-   useEffect(() => {
+    // GLOBAL STATE
+    const { dispatch } = useContext(Context);
 
-      // HIDE METAMASK GARBAGE
-      if (window.ethereum !== undefined) {
-         window.ethereum.autoRefreshOnNetworkChange = false;
-      }
+    // LOAD ONCE
+    useEffect(() => {
 
-      // WINDOW SIZE LISTENER
-      window.addEventListener('resize', () => {
-         dispatch({
-            type: 'window',
-            payload: {
-               height: window.innerHeight,
-               width: window.innerWidth
-            }
-         })
-      })
+        // HIDE METAMASK GARBAGE
+        if (window.ethereum !== undefined) {
+            window.ethereum.autoRefreshOnNetworkChange = false;
+        }
 
-      // MOUSE CLICK EVENT LISTENER
-      window.addEventListener('click', event => {
-         dispatch({
-            type: 'click-event',
-            payload: event
-         })
-      })
+        // WINDOW SIZE LISTENER
+        window.addEventListener('resize', () => {
+            dispatch({
+                type: 'window',
+                payload: {
+                    height: window.innerHeight,
+                    width: window.innerWidth
+                }
+            })
+        })
 
-      // KEY EVENT LISTENER
-      window.addEventListener('keydown', event => {
-         dispatch({
-            type: 'key-event',
-            payload: event
-         })
-      })
+        // MOUSE CLICK EVENT LISTENER
+        window.addEventListener('click', event => {
+            dispatch({
+                type: 'click-event',
+                payload: event
+            })
+        })
 
-   // eslint-disable-next-line
-   }, [])
+        // KEY EVENT LISTENER
+        window.addEventListener('keydown', event => {
+            dispatch({
+                type: 'key-event',
+                payload: event
+            })
+        })
 
-   return null;
+    // eslint-disable-next-line
+    }, [])
+
+    return null;
 }

@@ -7,6 +7,7 @@ import Init from './assets/init';
 import Menu from './components/menu';
 import Pages from './assets/pages';
 import Prompt from './components/prompt';
+import Messages from './components/messages';
 
 export default () => {
 
@@ -22,6 +23,7 @@ export default () => {
                     <Pages />
                 </div>
                 <Prompt set_wrapper={ set_local } />
+                <Messages />
             </Provider>
         </BrowserRouter>
     )

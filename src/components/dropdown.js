@@ -46,6 +46,15 @@ export default({ header, children }) => {
 
     // eslint-disable-next-line
     }, [state.click_event])
+
+    // CLOSE OPTIONS WHEN ESC IS PRESSED
+    useEffect(() => {
+        if (state.key_event !== undefined && local.visible && state.key_event.key === 'Escape') {
+            set_local({ type: 'toggle' })
+        }
+
+    // eslint-disable-next-line
+    }, [state.key_event])
     
     return (
         <div id={ 'dropdown' }>

@@ -16,6 +16,9 @@ const values = {
         visible: false,
         type: null
     },
+
+    // TOAST MESSAGES
+    messages: [],
 }
 
 // STATE REDUCER
@@ -57,6 +60,17 @@ function reducer(state, { type, payload }) {
                 visible: false,
                 payload: null
             }
+        }}
+
+        // ADD TOAST MESSAGE
+        case 'add-message': { return {
+            ...state,
+            messages: [
+                ...state.messages, {
+                    text: payload.msg,
+                    type: payload.type
+                }
+            ]
         }}
 
         // FALLBACK

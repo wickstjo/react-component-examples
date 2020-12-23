@@ -2,7 +2,7 @@ import React from 'react';
 import Dropdown from '../components/dropdown';
 
 export default () => { return (
-    <div id={ 'inner' }>
+    <div id={ 'dev' }>
         <Dropdown header={ 'LEFT ALIGN' }>
             <div id={ 'option' } onClick={() => { console.log('foo') }}>First</div>
             <div id={ 'option' } onClick={() => { console.log('bar') }}>Second</div>

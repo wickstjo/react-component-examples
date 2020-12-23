@@ -2,25 +2,26 @@
     flex: 1;
     border-top: 2px solid #ffffff21;
 
-    #inner {
+    // DEV TEMP SELECTORS
+    #dev {
         padding: 40px;
-    }
 
-    #button {
-        display: inline-block;
-        background: #bebebe;
-        padding: 8px 10px;
-        margin-bottom: 5px;
-        margin-right: 5px;
-        transition: 0.2s;
-        cursor: pointer;
-        min-width: 300px;
-        color: black;
-    }
+        #button {
+            display: inline-block;
+            background: #bebebe;
+            padding: 8px 10px;
+            margin-bottom: 5px;
+            margin-right: 5px;
+            transition: 0.2s;
+            cursor: pointer;
+            min-width: 300px;
+            color: black;
+        }
 
-    #button:hover {
-        background: #F1F1F1;
-        padding-left: 16px;
+        #button:hover {
+            background: #F1F1F1;
+            padding-left: 16px;
+        }
     }
 
     #header {

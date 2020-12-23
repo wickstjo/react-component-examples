@@ -23,7 +23,7 @@ export default () => {
     }
     
     return (
-        <div id={ 'inner' }>
+        <div id={ 'dev' }>
             <div id={ 'button' } onClick={ loading_trigger }>TRIGGER LOADING PROMPT</div>
             <div id={ 'button' } onClick={ import_trigger }>TRIGGER IMPORT PROMPT</div>
         </div>

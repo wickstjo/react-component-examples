@@ -6,7 +6,9 @@ export default () => { return (
         header={ 'created components' }
         data={[
             ['Dropdown Menu', '/dropdown'],
-            ['Prompt Window', '/prompt']
+            ['Prompt Window', '/prompt'],
+            ['Toast Messages', '/messages'],
+            ['Mouseover Tooltips', '/tooltips']
         ]}
     />
 )}
