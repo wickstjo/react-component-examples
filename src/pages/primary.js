@@ -8,7 +8,8 @@ export default () => { return (
             ['Dropdown Menu', '/dropdown'],
             ['Prompt Window', '/prompt'],
             ['Toast Messages', '/messages'],
-            ['Mouseover Tooltips', '/tooltips']
+            ['Mouseover Tooltips', '/tooltips'],
+            ['Expanding Options', '/expanding']
         ]}
     />
 )}

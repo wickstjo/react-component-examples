@@ -11,6 +11,7 @@ import Dropdown from '../pages/dropdown';
 import Prompt from '../pages/prompt';
 import Messages from '../pages/messages';
 import Tooltips from '../pages/tooltips';
+import Expanding from '../pages/expanding';
 
 export default () => { return (
    <div id={ 'innerbody' }>
@@ -20,6 +21,7 @@ export default () => { return (
          <Route path={ '/prompt' } component={ Prompt } />
          <Route path={ '/messages' } component={ Messages } />
          <Route path={ '/tooltips' } component={ Tooltips } />
+         <Route path={ '/expanding' } component={ Expanding } />
          <Route component={ Error } />
       </Switch>
    </div>
